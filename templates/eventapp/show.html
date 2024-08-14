@@ -1,0 +1,64 @@
+{% extends 'layout.html' %}
+
+{% block title %}
+    <title>Ver Eventos</title>
+{% endblock %}
+
+{% block content %}
+<h1>Eventos</h1>
+<table class="table">
+    <thead>
+      <tr>
+        <th scope="col">Imagem</th> 
+        <th scope="col">Título</th>
+        <th scope="col">Tipo</th>
+        <th scope="col">Local</th>
+        <th scope="col">Data de Início</th>
+        <th scope="col">Data de Fim</th>
+        <th scope="col">Horário</th>
+        <th scope="col">Cidade</th>
+        <th scope="col">Entrada</th>
+        <th scope="col">Quantidade</th>
+        <th scope="col">Ações</th>
+      </tr>
+    </thead>
+    <tbody>
+    {% for evento in obj %}
+      <tr>
+        <td>
+          {% if evento.imagem %}
+            <img src="{{ evento.imagem.url }}" alt="{{ evento.titulo }}">
+          {% else %}
+            <span>Sem imagem</span>
+          {% endif %}
+        </td>
+        <td>{{ evento.titulo }}</td>
+        <td>{{ evento.tipo }}</td>
+        <td>{{ evento.local }}</td>
+        <td>{{ evento.data_inicio }}</td>
+        <td>{{ evento.data_fim }}</td>
+        <td>{{ evento.horario }}</td>
+        <td>{{ evento.cidade }}</td>
+        <td>
+          {% if evento.preco %}
+            {{ evento.preco }}
+          {% else %}
+            Gratuito
+          {% endif %}
+        </td>
+        <td>
+          {% if evento.quantidade %}
+            {{ evento.quantidade }}
+          {% else %}
+            Ilimitado
+          {% endif %}
+        </td>
+        <td>
+            <a class="btn-warning" href="{% url 'update_url' evento.id %}">Atualizar</a>&nbsp;&nbsp;
+            <a class="btn-danger" href="{% url 'delete_url' evento.id %}">Deletar</a>
+        </td>
+      </tr>
+    {% endfor %}
+    </tbody>
+</table>
+{% endblock %}

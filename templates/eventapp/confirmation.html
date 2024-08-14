@@ -1,0 +1,16 @@
+{% extends 'layout.html' %}
+
+{% block title %}
+    <title>Confirmation Page</title>
+{% endblock %}
+
+{% block content %}
+    <div class="container">
+        <form class="form" method="post">
+            {% csrf_token %}
+            <h2>Confirmar ação de deletar</h2>
+            <input type="submit" value="Sim" class="btn-confirmation">
+            <button class="btn-success"><a href="{% url 'show_url' %}">Não</a></button>
+        </form>
+    </div>
+{% endblock %}

@@ -1,0 +1,16 @@
+{% extends 'layout.html' %}
+
+{% block title %}
+    <title>{% if form.instance.id %}Editar{% else %}Adicionar{% endif %} Evento</title>
+{% endblock %}
+
+{% block content %}
+<h1>{% if form.instance.id %}Editar{% else %}Adicionar{% endif %} Evento</h1>
+<div class="form-container">
+    <form method="post" class="event-form"  enctype="multipart/form-data" >
+        {% csrf_token %}
+        {{ form.as_p }}
+        <button type="submit" class="submit-btn">{% if form.instance.id %}Atualizar{% else %}Criar{% endif %}</button>
+    </form>
+</div>
+{% endblock %}
